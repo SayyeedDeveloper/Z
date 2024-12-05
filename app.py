@@ -1,17 +1,17 @@
+from flask_mail import Mail, Message
 from flask import Flask, render_template, redirect, url_for, flash, session, send_from_directory, request
-from sqlalchemy.sql.functions import current_user
-
 from config import Config
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, PasswordField, SubmitField, DateField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Optional
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask_wtf.file import FileField, FileAllowed
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
 import os
+import secrets
 
 app = Flask(__name__)
 app.config.from_object(Config)
+mail = Mail(app)
 
 db = SQLAlchemy(app)
 
@@ -135,6 +135,8 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         session['user'] = user.id
+        m = Message(subject='Welcome to Z', body='This is social media project', recipients=[email], cc=[email])
+        mail.send(m)
         return redirect(url_for('main'))
 
     return render_template('signUp.html', form=form)
@@ -213,8 +215,9 @@ def create_post():
             print(f"Duplicate Post Check -> {duplicate_post}")
 
             if not duplicate_post:
-                post = Post(title=title, content=content, user_id=user_id, datetime=datetime, picture=picture.filename)
-                picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture.filename))
+                random_filename = secrets.token_hex(12) + os.path.splitext(picture.filename)[1]
+                picture.save(os.path.join(app.config['UPLOAD_FOLDER'], random_filename))
+                post = Post(title=title, content=content, user_id=user_id, datetime=datetime, picture=random_filename)
                 db.session.add(post)
                 db.session.commit()
             else:
