@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center w-100 vh-100 bg-success">
+        <div class="p-5 bg-white" style="border-radius: 15px; width: 60%">
+            <h3 class="text-success text-center pb-3">Edit Post</h3>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="mb-0 list-unstyled">
+                            {% for category, message in messages %}
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-info-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                    </svg>
+                                    {{ message }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form class="d-flex flex-column" method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="form-floating mb-3">
+                    {{ form.title(class="form-control", placeholder="Title") }}
+                    <label for="title">Title</label>
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.content(class="form-control", placeholder="Content") }}
+                    <label for="content">Content</label>
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.datetime(class="form-control", placeholder="Date") }}
+                    <label for="Date">Date</label>
+                </div>
+                <div class="mb-3">
+                    {{ form.picture(class="form-control", id="picture") }}
+                </div>
+                <div class="d-flex align-self-end gap-2">
+                    <button type="button" class="btn btn-outline-success w-100 mt-3" onclick="window.location.href='/'">
+                        Cancel
+                    </button>
+                    <button class="btn btn-success w-100 mt-3" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

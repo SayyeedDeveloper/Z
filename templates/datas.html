@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+
+{% block home %}
+    <div class="main-content">
+        <div class="container">
+            <div>
+                <h3 class="fs-4 text-success fw-bolder py-3">Your Following Page</h3>
+                <table class="text-center table table-success table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for fp in following_posts %}
+                        {% set author = users | selectattr('id', 'equalto', fp.user_id) | first %}
+                        <tr>
+                            <th scope="row">{{ fp.id }}</th>
+                            <td>{{ fp.title }}</td>
+                            <td>{{ fp.content }}</td>
+                            <td>{{ fp.datetime }}</td>
+                            <td>{{ author.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="fs-4 text-success fw-bolder py-3">All Posts</h3>
+                    <table class="text-center table table-success table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for post in posts %}
+                        {% set author = users | selectattr('id', 'equalto', post.user_id) | first %}
+                        <tr>
+                            <th scope="row">{{ post.id }}</th>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.content }}</td>
+                            <td>{{ post.datetime }}</td>
+                            <td>{{ author.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                </div>
+                <div class="col">
+                    <h3 class="fs-4 text-success fw-bolder py-3">All Users</h3>
+                <table class="text-center table table-success table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Posts</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.uname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.pswd }}</td>
+                            <td>{{ user.posts }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

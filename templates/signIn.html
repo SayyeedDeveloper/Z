@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center w-100 vh-100 bg-success">
+        <div class="bg-white p-5 d-flex flex-column" style="border-radius: 15px; width: 35%">
+            <h1 class="text-center fw-bold pb-3">Sign In</h1>
+            <form class="d-flex flex-column" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-floating mb-3">
+                    {{ form.email_or_username(class="form-control", placeholder="Email or Username") }}
+                    <label for="email">Email or Username</label>
+                    {% if form.email_or_username.errors %}
+                        <div class="text-danger m-1">
+                            <p class="text-danger m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                </svg>
+                                {{ form.email_or_username.errors[0] }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.pswd(class="form-control", placeholder="Password") }}
+                    <label for="pswd">Password</label>
+                    {% if form.pswd.errors %}
+                        <div class="text-danger m-1">
+                            <p class="text-danger m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                </svg>
+                                {{ form.pswd.errors[0] }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="d-flex align-self-end gap-1">
+                    <div class="">
+                        <button onclick="window.location.href='/sign-up'" class="btn btn-outline-success w-100 mt-3">
+                            Create account
+                        </button>
+                    </div>
+                    <div class="">
+                        {{ form.submit(class="btn btn-success w-100 mt-3") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
