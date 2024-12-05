@@ -2,11 +2,11 @@
 
 {% block timeline %}
     <div class="container">
-        {% for post in posts %}
+        {% for post in posts[::-1] %}
             <!-- Find the user based on the post's user_id -->
             {% set author = users | selectattr('id', 'equalto', post.user_id) | first %}
 
-            <div class="timeline-post">
+            <div class="timeline-post m-5 d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <!-- Author Picture, Name, and Follow Button -->
                     <div class="d-flex align-items-center">
@@ -44,10 +44,12 @@
                         {% endif %}
                     </div>
                 </div>
-
+                <div class="d-flex w-100 justify-content-center bg- pb-sm-4 ">
+                    <img style="width: 500px; height: auto; border-radius: 15px;"
+                         src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
+                         class="img-fluid">
+                </div>
                 <h4>{{ post.title }}</h4>
-                <img src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
-                     class="img-fluid">
                 <p>{{ post.content }}</p>
                 <small style="color: #5c636a">{{ post.datetime }}</small>
             </div>

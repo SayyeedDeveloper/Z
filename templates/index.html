@@ -41,13 +41,13 @@
                     </svg>
                     Datas
                 </a>
-{#                <a href="/edit-profile" class="text-white d-flex align-items-center gap-2 fs-5">#}
-{#                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"#}
-{#                         class="bi bi-gear-fill" viewBox="0 0 16 16">#}
-{#                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>#}
-{#                    </svg>#}
-{#                    Settings#}
-{#                </a>#}
+                {#                <a href="/edit-profile" class="text-white d-flex align-items-center gap-2 fs-5">#}
+                {#                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"#}
+                {#                         class="bi bi-gear-fill" viewBox="0 0 16 16">#}
+                {#                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>#}
+                {#                    </svg>#}
+                {#                    Settings#}
+                {#                </a>#}
             </div>
             <a href="/edit-profile" class="text-white profile-link fs-5">Profile</a>
             <button onclick="window.location.href='/sign-out'"
@@ -62,98 +62,102 @@
                 Sign Out
             </button>
         </div>
-{% block home %}
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Create New Post Button -->
-            <div class="container text-end mb-3">
-                <a href="/create-post" class="btn btn-success fw-bold p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-pen-fill" viewBox="0 0 16 16">
-                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
-                    </svg>
-                    New Post
-                </a>
-            </div>
+        {% block home %}
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Create New Post Button -->
+                <div class="container text-end mb-3">
+                    <a href="/create-post" class="btn btn-success fw-bold p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-pen-fill" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                        </svg>
+                        New Post
+                    </a>
+                </div>
 
-            {% block timeline %}
-                <div class="container">
-                    {% for post in posts %}
-                        <!-- Find the user based on the post's user_id -->
-                        {% set author = users | selectattr('id', 'equalto', post.user_id) | first %}
+                {% block timeline %}
+                    <div class="container">
+                        {% for post in posts[::-1] %}
+                            <!-- Find the user based on the post's user_id -->
+                            {% set author = users | selectattr('id', 'equalto', post.user_id) | first %}
 
-                        <div class="timeline-post m-5 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <!-- Author Picture, Name, and Follow Button -->
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Author"
-                                         class="rounded-circle" style="width: 40px; height: 40px;">
-                                    <span class="ms-2 fw-bolder">{{ author.uname }}</span>
+                            <div class="timeline-post m-5 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <!-- Author Picture, Name, and Follow Button -->
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ url_for('static', filename='assets/user.png') }}" alt="Author"
+                                             class="rounded-circle" style="width: 40px; height: 40px;">
+                                        <span class="ms-2 fw-bolder">{{ author.uname }}</span>
 
-                                    {% if post.user_id != current_user.id %}
-                                        {% set is_following = follow_status[author.id] %}
-                                        {% if is_following %}
-                                            <a href="/unfollow/{{ post.user_id }}" type="button"
-                                               class="btn btn-outline-success gap-2 mx-3">
-                                                Unfollow
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-person-fill-dash"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                                                </svg>
-                                            </a>
-                                        {% else %}
-                                            <a href="/follow/{{ post.user_id }}" type="button"
-                                               class="btn btn-outline-success gap-2 mx-3">
-                                                Follow
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-person-fill-add"
-                                                     viewBox="0 0 16 16">
-                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                                                </svg>
-                                            </a>
+                                        {% if post.user_id != current_user.id %}
+                                            {% set is_following = follow_status[author.id] %}
+                                            {% if is_following %}
+                                                <a href="/unfollow/{{ post.user_id }}" type="button"
+                                                   class="btn btn-outline-success gap-2 mx-3">
+                                                    Unfollow
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-person-fill-dash"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                                                    </svg>
+                                                </a>
+                                            {% else %}
+                                                <a href="/follow/{{ post.user_id }}" type="button"
+                                                   class="btn btn-outline-success gap-2 mx-3">
+                                                    Follow
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-person-fill-add"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                                                    </svg>
+                                                </a>
+                                            {% endif %}
                                         {% endif %}
+                                    </div>
+
+                                    {% if post.user_id == current_user.id %}
+                                        <div class="align-self-end btn-group">
+                                            <button style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none;"
+                                                    type="button" class="btn dropdown" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                     fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                                                </svg>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a href="/edit-post/{{ post.id }}" class="dropdown-item"
+                                                       type="button">Edit
+                                                        Post</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/delete-post/{{ post.id }}"
+                                                       class="dropdown-item text-danger"
+                                                       type="button">Delete Post</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     {% endif %}
                                 </div>
-
-                                {% if post.user_id == current_user.id %}
-                                    <div class="align-self-end btn-group">
-                                        <button style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none;"
-                                                type="button" class="btn dropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                                 fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
-                                            </svg>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <a href="/edit-post/{{ post.id }}" class="dropdown-item" type="button">Edit
-                                                    Post</a>
-                                            </li>
-                                            <li>
-                                                <a href="/delete-post/{{ post.id }}" class="dropdown-item text-danger"
-                                                   type="button">Delete Post</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                {% endif %}
+                                <div class="d-flex w-100 justify-content-center bg- pb-sm-4 ">
+                                    <img style="width: 500px; height: auto; border-radius: 15px;"
+                                         src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
+                                         class="img-fluid">
+                                </div>
+                                <h4>{{ post.title }}</h4>
+                                <p>{{ post.content }}</p>
+                                <small style="color: #5c636a">{{ post.datetime }}</small>
                             </div>
+                        {% endfor %}
+                    </div>
+                {% endblock %}
 
-                            <h4>{{ post.title }}</h4>
-                            <img style="width: 500px; height: auto" src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
-                                 class="align-self-center img-fluid">
-                            <p>{{ post.content }}</p>
-                            <small style="color: #5c636a">{{ post.datetime }}</small>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endblock %}
-
-        </div>
-    {% endblock %}
+            </div>
+        {% endblock %}
     </div>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 {% endblock %}
