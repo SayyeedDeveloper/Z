@@ -1,4 +1,6 @@
 from flask_mail import Mail, Message
+import secrets
+from itsdangerous import URLSafeTimedSerializer
 from flask import Flask, render_template, redirect, url_for, flash, session, send_from_directory, request
 from config import Config
 from flask_wtf import FlaskForm
@@ -12,7 +14,7 @@ import secrets
 app = Flask(__name__)
 app.config.from_object(Config)
 mail = Mail(app)
-
+s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -92,9 +94,21 @@ class PostForm(FlaskForm):
     submit = SubmitField()
 
 
+class ForgotPasswordForm(FlaskForm):
+    email = EmailField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Reset Password')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+
 
 @app.route('/user_files/<filename>')
 def user_files(filename):
+    if filename is None:
+        return redirect(url_for('main'))
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.route('/')
@@ -186,7 +200,7 @@ def edit_profile():
             form.uname.data = user.uname
             form.email.data = user.email
             form.pswd.data = user.pswd
-            return render_template('editProfile.html', form=form)
+            return render_template('editProfile.html', form=form, user=user)
     else:
         return redirect(url_for('sign_in'))
 
@@ -215,11 +229,16 @@ def create_post():
             print(f"Duplicate Post Check -> {duplicate_post}")
 
             if not duplicate_post:
-                random_filename = secrets.token_hex(12) + os.path.splitext(picture.filename)[1]
-                picture.save(os.path.join(app.config['UPLOAD_FOLDER'], random_filename))
-                post = Post(title=title, content=content, user_id=user_id, datetime=datetime, picture=random_filename)
-                db.session.add(post)
-                db.session.commit()
+                if picture:
+                    random_filename = secrets.token_hex(12) + os.path.splitext(picture.filename)[1]
+                    picture.save(os.path.join(app.config['UPLOAD_FOLDER'], random_filename))
+                    post = Post(title=title, content=content, user_id=user_id, datetime=datetime, picture=random_filename)
+                    db.session.add(post)
+                    db.session.commit()
+                else:
+                    post = Post(title=title, content=content, user_id=user_id, datetime=datetime)
+                    db.session.add(post)
+                    db.session.commit()
             else:
                 flash("You have already created this post.")
                 return render_template('createPost.html', form=form)
@@ -352,6 +371,73 @@ def datas():
 
         return render_template('datas.html', following=following, following_posts=following_posts, users=users, posts=posts)
 
+
+
+@app.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    form = ForgotPasswordForm()
+    if form.validate_on_submit():
+        # Check if the email exists in the database
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            # Generate reset token
+            token = s.dumps(form.email.data, salt='password-reset-salt')
+            reset_url = url_for('reset_password', token=token, _external=True)
+            msg = Message('Password Reset Request', recipients=[form.email.data])
+            msg.body = f'Click the link to reset your password: {reset_url}'
+            mail.send(msg)
+            flash('A password reset link has been sent to your email address.', 'info')
+            return redirect(url_for('sign_in'))
+        else:
+            flash('Email not found. Please check your email and try again.', 'danger')
+    return render_template('forgot_password.html', form=form)
+
+@app.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        # Try to decode the token
+        email = s.loads(token, salt='password-reset-salt', max_age=3600)  # Token expires in 1 hour
+    except:
+        flash('The reset link is invalid or has expired.', 'danger')
+        return redirect(url_for('sign_in'))
+
+    user = User.query.filter_by(email=email).first()
+    if user:
+        form = ResetPasswordForm()
+        if form.validate_on_submit():
+            user.pswd = form.password.data  # Update the user's password
+            db.session.commit()
+            flash('Your password has been updated!', 'success')
+            return redirect(url_for('sign_in'))
+        return render_template('reset_password.html', form=form)
+    else:
+        flash('User not found', 'danger')
+        return redirect(url_for('sign_in'))
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    if 'user' in session:
+        user = User.query.filter_by(id=id).first()
+        posts = Post.query.filter_by(user_id=id).all()
+        print(posts)
+        if user and user.id == session['user']:
+            followed = Follow.query.filter_by(follower_id=id).all()
+            for f in followed:
+                db.session.delete(f)
+                db.session.commit()
+            for post in posts:
+                print(post)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], post.picture)
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+
+                db.session.delete(post)
+                db.session.commit()
+
+            db.session.delete(user)
+            db.session.commit()
+            return redirect(url_for('sign_out'))
+    return redirect(url_for('main'))
 
 if __name__ == '__main__':
     app.run(debug=True)

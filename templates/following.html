@@ -44,11 +44,13 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="d-flex w-100 justify-content-center bg- pb-sm-4 ">
-                    <img style="width: 500px; height: auto; border-radius: 15px;"
-                         src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
-                         class="img-fluid">
-                </div>
+                {% if post.picture %}
+                    <div class="d-flex w-100 justify-content-center bg- pb-sm-4 ">
+                        <img style="width: 500px; height: auto; border-radius: 15px;"
+                            src="{{ url_for('user_files', filename=post.picture) }}" alt="Post Picture"
+                            class="img-fluid">
+                    </div>
+                {% endif %}
                 <h4>{{ post.title }}</h4>
                 <p>{{ post.content }}</p>
                 <small style="color: #5c636a">{{ post.datetime }}</small>

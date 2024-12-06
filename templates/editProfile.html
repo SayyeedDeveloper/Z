@@ -67,8 +67,9 @@
                     <label for="pswd">Password</label>
                 </div>
                 <div class="align-self-end d-flex gap-2">
+                    <button onclick="window.location.href='/delete/{{ user.id }}'" class="btn btn-danger w-100 mt-3">Delete</button>
                     <button onclick="window.location.href='/'" class="btn btn-outline-success w-100 mt-3">Cancel</button>
-                    <button class="btn btn-success w-100 mt-3">Submit</button>
+                    <button type="submit" class="btn btn-success w-100 mt-3">Submit</button>
                 </div>
             </form>
         </div>
