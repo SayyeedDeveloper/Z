@@ -1,4 +1,5 @@
 from flask_mail import Mail, Message
+from flask_vercel import Vercel
 from itsdangerous import URLSafeTimedSerializer
 from flask import Flask, render_template, redirect, url_for, flash, session, send_from_directory, request
 from config import Config
@@ -14,6 +15,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 mail = Mail(app)
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+vercel_app = Vercel(app)
 db = SQLAlchemy(app)
 
 class User(db.Model):
