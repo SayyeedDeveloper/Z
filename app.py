@@ -282,16 +282,14 @@ def edit_post(id):
                 if 'picture' in request.files:
                     picture = request.files['picture']
                     if picture.filename:  # A new file is uploaded
-                        # Remove old picture
                         if post.picture:
                             old_image_path = os.path.join(app.config['UPLOAD_FOLDER'], post.picture)
                             if os.path.exists(old_image_path):
                                 os.remove(old_image_path)
 
-                        # Save new picture
-                        picture_path = os.path.join(app.config['UPLOAD_FOLDER'], picture.filename)
-                        picture.save(picture_path)
-                        post.picture = picture.filename
+                        random_filename = secrets.token_hex(12) + os.path.splitext(picture.filename)[1]
+                        picture.save(os.path.join(app.config['UPLOAD_FOLDER'], random_filename))
+                        post.picture = random_filename
 
                 db.session.commit()
                 return redirect(url_for('main'))
