@@ -1,5 +1,4 @@
 from flask_mail import Mail, Message
-import secrets
 from itsdangerous import URLSafeTimedSerializer
 from flask import Flask, render_template, redirect, url_for, flash, session, send_from_directory, request
 from config import Config
